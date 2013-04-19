@@ -1,0 +1,25 @@
+
+body{
+	font-size: 14px;
+	font-family: helvetica,sans-serif;
+	line-height: 1.1em;
+}
+
+label{
+	display: block;
+}
+
+label.space{
+	margin-bottom: 7px;
+}
+
+label span{
+	width: 115px;
+	display: inline-block;
+}
+
+.hidden-section{
+	display: none;
+	margin: 0;
+	padding: 0;
+}

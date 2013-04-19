@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Forms!!!</title>
+	<link href="css/screen.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script src="js/more.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+<h2>Upload your picture</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<form action="process.php" method="post" enctype="multipart/form-data">
+
+<label class="space">
+	<span>Name:</span> <input type="text" name="name" />
+</label>
+<label class="space">
+	<span>E-mail:</span> <input type="text" name="email" />
+</label>
+<h4>Type of contest:</h4>
+<label>
+	<input type="radio" name="contest" value="babies" /> Babies 
+</label>
+<label>
+	<input type="radio" name="contest" value="puppy" /> Cutest Puppy
+</label>
+<label>
+	<input type="radio" name="contest" value="awkward" /> Awkward Family Photo
+</label>
+	<div class="hidden-section" data-contest="babies">
+		<label>
+			<span>Child's Name:</span><input type="text" name="baby_name" />
+		</label>
+		<input type="file" name="baby_picture" />
+	</div>
+	<div class="hidden-section" data-contest="puppy">
+		<label>
+			<span>Puppy's Name:</span><input type="text" name="puppy_name" />
+		</label>
+		<input type="file" name="puppy_picture" />
+	</div>
+	<div class="hidden-section" data-contest="awkward">
+		<label>
+			<span>Family Name:</span><input type="text" name="family_name" />
+		</label>
+		<input type="file" name="family_picture" />
+	</div>
+	<input type="submit" />
+</form>
+
+</body>
+</html>
