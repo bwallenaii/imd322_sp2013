@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Canvas</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script type="text/javascript" src="js/canvas.js"></script>
+	<script>
+
+		var stage = new Stage("stage");
+
+		var l1 = new Layer({}, stage);
+		var l2 = new Layer({}, stage);
+
+		var bkg = l1.addChild(new CanvasObject({
+		            draw: function(){
+		                this.rectangle(stage.width, stage.height, "#000000");        
+		            }
+		       }));
+
+	</script>
+</head>
+<body>
+	<div id="stage" style="width:500;height:400"></div>
+</body>
+</html>

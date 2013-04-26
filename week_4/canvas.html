@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Canvas</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script>
+
+		document.addEvent("domready", function(){
+			var myCanvas = document.id("drawing");
+			var ctx = myCanvas.getContext('2d');
+			var top = 50;
+			var left = 50;
+			var dragon = new Image();
+			
+			dragon.onload = function(){
+				console.log("asdf");
+				drawStuff.periodical(30);
+			};
+			dragon.src = "img/dragon_fire2.jpg";
+			function drawPar(x,y)
+			{
+				ctx.beginPath();
+				ctx.moveTo(x,y);
+				ctx.lineTo(x+50,y+50);
+				ctx.lineTo(x+150,y+50);
+				ctx.lineTo(x+100,y);
+				ctx.closePath();
+				
+				ctx.fill();
+				ctx.stroke();
+			}
+
+			function drawCircle(x, y, radius)
+			{
+				ctx.beginPath();
+      				ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+      				ctx.fill();
+				ctx.stroke();
+			}
+
+			function drawStuff()
+			{
+				ctx.clearRect(0,0,myCanvas.width, myCanvas.height);
+				ctx.fillStyle = "rgba(0,0,0,1)";
+				ctx.fillRect(0,0,myCanvas.width, myCanvas.height);
+				ctx.strokeStyle = "rgba(255,0,0,1)";
+				ctx.fillStyle = "rgba(0,255,0,0.5)";
+				ctx.lineWidth = 5;
+				ctx.lineJoin = "round";
+
+				ctx.drawImage(dragon, 75, 75, myCanvas.width - 150, myCanvas.height - 150);
+
+				drawPar(top, left);
+				top += 3;
+				left += 3;
+
+				drawCircle(200, 150, 25);
+
+
+			}
+
+			
+			
+			/*drawPar(50, 50);
+
+			ctx.strokeStyle = "rgba(50,75,200,1)";
+			ctx.fillStyle = "rgba(90,5,78,0.5)";
+			ctx.lineWidth = 5;
+			ctx.lineJoin = "round";
+
+			drawPar(75,75);*/
+			
+			
+			
+		});
+	</script>
+</head>
+<body>
+	<canvas id="drawing" width="500" height="400"></canvas>
+</body>
+</html>
