@@ -1,0 +1,25 @@
+<xml>
+	<name>Our Products</name>
+	<version>2.0</version>
+	<products>
+		<product>
+			<name>Tim's Turnips</name>
+			<price>2.99</price>
+			<description>
+				
+				Sure <strong>beets</strong> a radish!
+				
+			</description>
+		</product>
+		<product>
+			<name>Wooden Chair</name>
+			<price>89.99</price>
+			<description>
+				
+				It may hurt to sit on, but at least you're sitting.
+				
+			</description>
+		</product>
+	</products>
+
+</xml>

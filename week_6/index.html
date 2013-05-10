@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>XML/JSON Parsing</title>
+	<style>
+		#products>div{
+			border-bottom: dashed 2px #444444;
+			margin-bottom: 17px;
+		}
+		#products>div p:first-child{
+			font-weight: bold;
+			font-family: Helvetica;
+			font-size: 1.1em;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script>
+		//getting and using json to build results
+		document.addEvent("domready", function(){
+			var json = new Request.JSON({
+				url: "json.php"
+			});
+
+			json.addEvent("success", function(data, str){
+				var container = document.id("products");
+				container.set("html", "");
+				for(var i = 0; i < data.products.length;++i)
+				{
+					var product = data.products[i];
+					var prodCont = new Element("div");
+					var nameCont = new Element("p");
+					var priceCont = new Element("p");
+					var descCont = new Element("p");
+					var picCont = new Element("img");
+
+					nameCont.set("html", product.name);
+					priceCont.set("html", "Price: $" + product.price);
+					descCont.set("html", product.description);
+					if(product.image)
+					{
+						picCont.set("src", product.image);
+						picCont.inject(prodCont);
+					}
+
+					nameCont.inject(prodCont);
+					priceCont.inject(prodCont);
+					descCont.inject(prodCont);
+					prodCont.inject(container);
+
+				}
+			});
+
+			json.get();
+
+		});
+
+		//Now getting the XML file
+		/*document.addEvent("domready", function(){
+			var xml = new Request.HTML({
+				url: "products.xml"
+			});
+
+			xml.addEvent("success", function(nodelist, obj, html){
+				
+				var container = document.id("products");
+				var products  = obj[3].getChildren();
+
+				for(var i = 0; i < products.length; ++i)
+				{
+					var product = products[i].getChildren();
+
+					var prodCont = new Element("div");
+					var nameCont = new Element("p");
+					var priceCont = new Element("p");
+					var descCont = new Element("p");
+					console.log(product[2].getChildren());
+					nameCont.set("html", product[0].get("text"));
+					priceCont.set("html", "Price: $" + product[1].get("text"));
+					descCont.set("html", product[2].get("html"));
+
+					nameCont.inject(prodCont);
+					priceCont.inject(prodCont);
+					descCont.inject(prodCont);
+					prodCont.inject(container);
+				}
+			});
+
+			xml.get();
+		});*/
+	</script>
+</head>
+<body>
+	<div id="products">
+
+	</div>
+</body>
+</html>
