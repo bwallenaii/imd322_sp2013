@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>XML/JSON Parsing</title>
+	<style>
+		#products>div{
+			border-bottom: dashed 2px #444444;
+			margin-bottom: 17px;
+		}
+		#products>div p:first-child{
+			font-weight: bold;
+			font-family: Helvetica;
+			font-size: 1.1em;
+		}
+		#error{
+			display:none;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+	<script type="text/javascript">
+
+	document.addEvent("domready", function(){
+		var ok = true;
+		if(Browser.ie9 || Browser.ie8 || Browser.ie7)
+		{
+			ok = false;
+			document.id("error").setStyle("display", "block");
+		}
+
+		var httpReq = new XMLHttpRequest();
+		var products = document.id("products");
+		function requestReady()
+		{
+			products.set("html", "");
+			var obj = this.response;
+			
+			/*ie fix. . . freakin' microsoft */
+			if(typeOf(this.response) != "object")
+			{
+				//convert the json string to an object
+				obj = JSON.decode(obj);
+			}
+			for(var i = 0; i < obj.products.length;++i)
+			{
+				var product = obj.products[i];
+				var li = new Element("li");
+				li.set("html", product.name + " | " + product.price);
+				li.inject(products);
+			}
+			httpReq.open("get", "json.php", true);
+			httpReq.send.delay(2000, httpReq);
+		}
+		httpReq.onload = requestReady;
+		httpReq.open("get", "json.php", true);
+		httpReq.responseType = "json";
+		ok ? httpReq.send():null;
+	});
+		
+	</script>
+</head>
+<body>
+	<div id="error"><h1>Flagrant system error!!!</h1> This browser doesn't work on this computer. I'm going to format your drive!!</div>
+	<ul id="products">
+
+	</ul>
+</body>
+</html>
