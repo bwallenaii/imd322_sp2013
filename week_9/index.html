@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+
+	<title>Events and more events</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+    <script>
+    document.addEvent("domready", function(){
+        var form = document.id("cool-form");
+        var textBoxes = form.getElements("input[type='text']");
+        
+        if(Browser.ie)
+        {
+            textBoxes.each(function(el){
+                var placeHolder = el.get("placeholder");
+                el.set("value", placeHolder);
+                el.setStyle("color", "#999");
+            });
+            //focus fires when an element can be used
+            textBoxes.addEvent("focus", function(){
+                var curVal = this.get("value");
+                var placeHolder = this.get("placeholder");
+                if(curVal == placeHolder)
+                {
+                    this.set("value", "");
+                    this.setStyle("color", "#222");
+                }
+            });
+            //keypress fires when a keyboard key is pressed down
+            /*textBoxes.addEvent("keypress", function(){
+                var curVal = this.get("value");
+                var placeHolder = this.get("placeholder");
+                if(curVal == placeHolder)
+                {
+                    this.set("value", "");
+                    this.setStyle("color", "#222");
+                }
+            });
+            //keyup fires when a keyboard key is released
+            textBoxes.addEvent("keyup", function(){
+                var curVal = this.get("value");
+                var placeHolder = this.get("placeholder");
+                if(curVal == "")
+                {
+                    this.set("value", placeHolder);
+                    this.setStyle("color", "#999");
+                }
+            });*/
+            //blur fires when an element is no longer active
+            textBoxes.addEvent("blur", function(){
+                var curVal = this.get("value");
+                var placeHolder = this.get("placeholder");
+                if(curVal == "")
+                {
+                    this.set("value", placeHolder);
+                    this.setStyle("color", "#999");
+                }
+            });
+        }
+        
+        form.addEvent("submit", function(){
+            var email = this.getElement("input[name='email']");
+            
+            
+            
+            return email.get("value") != "";
+        });
+        
+        form.addEvent("reset", function(){
+            return confirm("Are you sure you want to clear the form?");
+        });
+        
+        window.addEvent("beforeunload", function(){
+            alert("yodel!");
+            return false;
+        });
+        
+        document.addEvent("unload", function(){
+            alert("chicken!");
+            //return false;
+        });
+        
+        window.onbeforeunload = function(){
+            alert("I like fruit!");
+        }
+    });
+        
+    </script>
+</head>
+
+<body>
+<form id="cool-form" action="">
+    <label>
+        First Name: <input name="firstName" type="text" placeholder="First Name" />
+    </label>
+    <label>
+        Last Name: <input name="lastName" type="text" placeholder="Last Name" />
+    </label>
+    <label>
+        Email: <input name="email" type="text" placeholder="example@domain.com" />
+    </label>
+    <input type="submit" />
+    <input type="reset" />
+</form>
+
+
+</body>
+</html>
